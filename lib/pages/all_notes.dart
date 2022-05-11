@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mobbit/pages/view_note.dart';
+import 'package:mobbit/widgets/note.dart';
 
 class AllTask extends StatefulWidget {
   const AllTask({Key? key}) : super(key: key);
-
   @override
   State<AllTask> createState() => _AllTaskState();
 }
@@ -38,32 +39,14 @@ class _AllTaskState extends State<AllTask> {
               mainAxisSpacing: 10,
               crossAxisCount: 2,
               children: <Widget>[
-                Container(
-                  decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 169, 240, 171),
-                      borderRadius: BorderRadius.all(Radius.circular(8))),
-                  padding: const EdgeInsets.all(8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        'My First Note',
-                        style: TextStyle(
-                            fontSize: 19.0, fontWeight: FontWeight.bold),
-                      ),
-                      Text('12/4/2012 19:45PM'),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'My First Note My First Note My First Note My First Note My First Note ..',
-                        style: TextStyle(
-                          fontSize: 13.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ViewNote()));
+                    },
+                    child: const Note()),
               ],
             ),
             Padding(
@@ -78,7 +61,7 @@ class _AllTaskState extends State<AllTask> {
                       style: TextStyle(fontSize: 16, color: Colors.white)),
                 ),
               ),
-            )
+            ),
           ],
         ));
   }

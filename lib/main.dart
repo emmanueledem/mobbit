@@ -1,6 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:mobbit/pages/all_task.dart';
+import 'package:mobbit/pages/all_notes.dart';
 
 void main() {
   runApp(const MyApp());
