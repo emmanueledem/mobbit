@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
             splash: const Text(
               'MOBBIT',
               style: TextStyle(
+                fontFamily: 'VarelaRound',
                 color: Colors.white,
                 fontSize: 30.0,
                 fontWeight: FontWeight.w900,

@@ -25,7 +25,8 @@ class _AllTaskState extends State<AllTask> {
               ),
               Text(
                 'Mobbit',
-                style: TextStyle(color: Colors.black),
+                style:
+                    TextStyle(color: Colors.black, fontFamily: 'VarelaRound'),
               ),
             ],
           ),
@@ -58,7 +59,10 @@ class _AllTaskState extends State<AllTask> {
                       backgroundColor: MaterialStateProperty.all(Colors.blue)),
                   onPressed: () {},
                   child: const Text('+ Add Note',
-                      style: TextStyle(fontSize: 16, color: Colors.white)),
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'VarelaRound',
+                          color: Colors.white)),
                 ),
               ),
             ),

@@ -17,7 +17,10 @@ class Note extends StatelessWidget {
         children: const [
           Text(
             'My First Note',
-            style: TextStyle(fontSize: 19.0, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: 19.0,
+                fontFamily: 'VarelaRound',
+                fontWeight: FontWeight.bold),
           ),
           Text('12/4/2012 19:45 PM'),
           SizedBox(
@@ -27,6 +30,7 @@ class Note extends StatelessWidget {
             'My First Note My First Note My First Note My First Note My First Note ..',
             style: TextStyle(
               fontSize: 13.0,
+              fontFamily: 'VarelaRound',
             ),
           ),
         ],
