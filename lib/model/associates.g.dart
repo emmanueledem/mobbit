@@ -50,4 +50,5 @@ class AssociatesAdapter extends TypeAdapter<Associates> {
       other is AssociatesAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
+          
 }

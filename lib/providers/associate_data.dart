@@ -28,7 +28,7 @@ class AssociateData extends ChangeNotifier {
 
     notifyListeners();
   }
-
+  
   void deleteAssociates(key) async {
     var box = await Hive.openBox<Associates>(_boxName);
     await box.delete(key);
