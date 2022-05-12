@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobbit/pages/view_note.dart';
+import 'package:mobbit/core/navigators/navigators.dart';
 import 'package:mobbit/widgets/note.dart';
 
 class AllTask extends StatefulWidget {
@@ -39,15 +39,8 @@ class _AllTaskState extends State<AllTask> {
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
               crossAxisCount: 2,
-              children: <Widget>[
-                InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ViewNote()));
-                    },
-                    child: const Note()),
+              children: const <Widget>[
+                Note(),
               ],
             ),
             Padding(
@@ -57,7 +50,9 @@ class _AllTaskState extends State<AllTask> {
                 child: TextButton(
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.blue)),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, Routes.createNote);
+                  },
                   child: const Text('+ Add Note',
                       style: TextStyle(
                           fontSize: 16,

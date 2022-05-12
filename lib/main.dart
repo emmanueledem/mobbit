@@ -1,6 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:mobbit/pages/all_notes.dart';
+import 'package:mobbit/core/navigators/router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+        onGenerateRoute: Routers.generateRoute,
         home: AnimatedSplashScreen(
             duration: 3000,
             splash: const Text(
