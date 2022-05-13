@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobbit/widgets/action_dots.dart';
-import 'package:mobbit/widgets/dialouge.dart';
-
 import '../core/navigators/navigators.dart';
 import '../pages/view_note.dart';
 
@@ -20,24 +18,23 @@ class Note extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          InkWell(
-            onTap: () {
-              showAlertDialog(context);
+          PopupMenuButton(
+            icon: const Icon(Icons.more_horiz),
+            itemBuilder: (context) {
+              return const [
+                PopupMenuItem(
+                  value: 'edit',
+                  child: Text('Edit Note'),
+                ),
+                PopupMenuItem(
+                  value: 'delete',
+                  child: Text('Delete Note'),
+                )
+              ];
             },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: const [
-                ActionDots(),
-                SizedBox(
-                  width: 3.0,
-                ),
-                ActionDots(),
-                SizedBox(
-                  width: 3.0,
-                ),
-                ActionDots(),
-              ],
-            ),
+            onSelected: (String value) {
+              print('You Click on po up menu item');
+            },
           ),
           InkWell(
             onTap: () {
