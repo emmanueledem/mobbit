@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:mobbit/widgets/action_dots.dart';
+import 'package:mobbit/services/providers/notes_provider.dart';
+import 'package:provider/provider.dart';
 import '../core/navigators/navigators.dart';
-import '../pages/view_note.dart';
 
+// ignore: must_be_immutable
 class Note extends StatelessWidget {
-  const Note({
+  Note({
     Key? key,
+    required this.noteTitle,
+    required this.noteDescription,
+    required this.dateAdded,
   }) : super(key: key);
+
+  String noteTitle;
+  String noteDescription;
+  String dateAdded;
 
   @override
   Widget build(BuildContext context) {
@@ -16,25 +24,33 @@ class Note extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(8))),
       padding: const EdgeInsets.all(8),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          PopupMenuButton(
-            icon: const Icon(Icons.more_horiz),
-            itemBuilder: (context) {
-              return const [
-                PopupMenuItem(
-                  value: 'edit',
-                  child: Text('Edit Note'),
-                ),
-                PopupMenuItem(
-                  value: 'delete',
-                  child: Text('Delete Note'),
-                )
-              ];
-            },
-            onSelected: (String value) {
-              print('You Click on po up menu item');
-            },
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              PopupMenuButton(
+                icon: const Icon(Icons.more_horiz),
+                itemBuilder: (context) {
+                  return const [
+                    PopupMenuItem(
+                      value: 'edit',
+                      child: Text('Edit Note'),
+                    ),
+                    PopupMenuItem(
+                      value: 'delete',
+                      child: Text('Delete Note'),
+                    )
+                  ];
+                },
+                onSelected: (String value) {
+                  var notesProvider = Provider.of<NotesProvider>(context);
+                  value == 'delete'
+                      ? notesProvider.deleteSingleNote()
+                      : Navigator.pushNamed(context, Routes.editNote);
+                },
+              ),
+            ],
           ),
           InkWell(
             onTap: () {
@@ -42,21 +58,23 @@ class Note extends StatelessWidget {
             },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
-                  'My First Note',
-                  style: TextStyle(
+                  noteTitle,
+                  style: const TextStyle(
                       fontSize: 19.0,
                       fontFamily: 'VarelaRound',
                       fontWeight: FontWeight.bold),
                 ),
-                Text('12/4/2012 19:45 PM'),
-                SizedBox(
+                Text(dateAdded.toString()),
+                const SizedBox(
                   height: 10,
                 ),
                 Text(
-                  'My First Note My First Note My First Note My First Note My First Note ..',
-                  style: TextStyle(
+                  noteDescription.length > 20
+                      ? noteDescription.substring(0, 20) + '...'
+                      : noteDescription,
+                  style: const TextStyle(
                     fontSize: 13.0,
                     fontFamily: 'VarelaRound',
                   ),

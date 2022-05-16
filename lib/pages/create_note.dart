@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mobbit/core/constants.dart';
+import 'package:mobbit/model/notes.dart';
+import 'package:mobbit/services/providers/notes_provider.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:provider/provider.dart';
 
 class CreateNote extends StatefulWidget {
   const CreateNote({Key? key}) : super(key: key);
@@ -13,7 +16,6 @@ class CreateNote extends StatefulWidget {
 class _CreateNoteState extends State<CreateNote> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _noteTitle = TextEditingController();
-
   final TextEditingController _noteBody = TextEditingController();
 
   @override
@@ -106,25 +108,25 @@ class _CreateNoteState extends State<CreateNote> {
                                     borderRadius: BorderRadius.circular(30),
                                     child: MaterialButton(
                                       onPressed: () async {
+                                        var notesProvider =
+                                            Provider.of<NotesProvider>(context,
+                                                listen: false);
                                         if (_formKey.currentState!.validate()) {
                                           setState(() {
                                             FocusManager.instance.primaryFocus
                                                 ?.unfocus();
                                           });
-                                          // var snackBar = SnackBar(
-                                          //   backgroundColor: appColour,
-                                          //   duration:
-                                          //       const Duration(seconds: 5),
-                                          //   content: Text(
-                                          //     dishprovider.updateResponse
-                                          //         .toString(),
-                                          //     style: const TextStyle(
-                                          //         color: Colors.white),
-                                          //   ),
-                                          // );
-                                          // Scaffold.of(context)
-                                          //     // ignore: deprecated_member_use
-                                          //     .showSnackBar(snackBar);
+                                          await notesProvider.addNote(
+                                            Notes(
+                                              noteTitle: _noteTitle.text,
+                                              noteDescription: _noteBody.text,
+                                              dateAdded: DateTime.now(),
+                                              noteColour: 'red',
+                                            ),
+                                          );
+                                          await notesProvider.getNotes();
+
+                                          Navigator.pop(context);
                                         }
                                       },
                                       minWidth: 365,

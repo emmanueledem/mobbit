@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobbit/pages/all_notes.dart';
 import 'package:mobbit/pages/create_note.dart';
 import 'package:mobbit/core/navigators/routes.dart';
 import 'package:mobbit/pages/edit_note.dart';
@@ -14,6 +15,8 @@ class Routers {
         return _getPageRoute(viewToShow: const EditNote());
       case Routes.viewNote:
         return _getPageRoute(viewToShow: const ViewNote());
+      case Routes.allNotes:
+        return _getPageRoute(viewToShow: const AllTask());
       default:
         return MaterialPageRoute<dynamic>(
           builder: (_) => Scaffold(
