@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:mobbit/services/providers/notes_provider.dart';
 import 'package:provider/provider.dart';
 import '../core/navigators/navigators.dart';
@@ -10,18 +11,20 @@ class Note extends StatelessWidget {
     required this.noteTitle,
     required this.noteDescription,
     required this.dateAdded,
+    required this.colorCode,
   }) : super(key: key);
 
   String noteTitle;
   String noteDescription;
   String dateAdded;
+  Color colorCode;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 169, 240, 171),
-          borderRadius: BorderRadius.all(Radius.circular(8))),
+      decoration: BoxDecoration(
+          color: colorCode,
+          borderRadius: const BorderRadius.all(Radius.circular(8))),
       padding: const EdgeInsets.all(8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:mobbit/core/constants.dart';
 import 'package:mobbit/model/notes.dart';
 import 'package:mobbit/services/providers/notes_provider.dart';
+import 'package:mobbit/widgets/note.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
 
@@ -116,16 +118,18 @@ class _CreateNoteState extends State<CreateNote> {
                                             FocusManager.instance.primaryFocus
                                                 ?.unfocus();
                                           });
+                                          notesProvider.colorPicker();
+
                                           await notesProvider.addNote(
                                             Notes(
                                               noteTitle: _noteTitle.text,
                                               noteDescription: _noteBody.text,
                                               dateAdded: DateTime.now(),
-                                              noteColour: 'red',
+                                              noteColour: notesProvider
+                                                  .colorCode as Color,
                                             ),
                                           );
                                           await notesProvider.getNotes();
-
                                           Navigator.pop(context);
                                         }
                                       },

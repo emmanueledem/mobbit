@@ -20,7 +20,7 @@ class NotesAdapter extends TypeAdapter<Notes> {
       noteTitle: fields[0] as String,
       noteDescription: fields[1] as String,
       dateAdded: fields[2] as DateTime,
-      noteColour: fields[3] as String,
+      noteColour: fields[3] as Color,
     );
   }
 

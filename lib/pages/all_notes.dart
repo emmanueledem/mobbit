@@ -132,13 +132,14 @@ class _AllTaskState extends State<AllTask> {
                             crossAxisCount: 2),
                     itemCount: allNotes.noteList.length,
                     itemBuilder: (context, index) {
-                      Notes note = allNotes.noteList[index];
-                      var finalDate =
+                      Notes note = allNotes.noteList[index];   
+                      var finalDate =  
                           DateFormat.yMEd().add_jms().format(note.dateAdded);
                       return Note(
                         noteTitle: note.noteTitle,
                         noteDescription: note.noteDescription,
                         dateAdded: finalDate.toString(),
+                        colorCode:  note.noteColour,
                       );
                     },
                   ),

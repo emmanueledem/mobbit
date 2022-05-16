@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 
 part 'notes.g.dart';
@@ -11,7 +12,7 @@ class Notes {
   @HiveField(2)
   final DateTime dateAdded;
   @HiveField(3)
-  final String noteColour;
+  final Color noteColour;
 
   Notes(
       {required this.noteTitle,
